@@ -51,15 +51,15 @@ uint8_t midi2vol = 0x3E;
 
 // Defines names for use in layer keycodes and the keymap
 
-#define _NAV 0
+#define _DEF 0
 
-#define _MEDIA 1
+#define _VOL 1
 
-#define _VOLUME 2
+#define _MEDIA 2
 
-#define _DISCORD 3
+#define _EXFC 3
 
-#define _LIGHTS 4
+#define _MFC 4
 
 #define _EDIT 5
 
@@ -82,7 +82,7 @@ enum custom_keycodes { // In order to add more volume controls, add here a custo
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
-    [_NAV] = LAYOUT(
+    [_DEF] = LAYOUT(
         MO(_TOOGLE),
         KC_F18, KC_F19, KC_F20,
         KC_F21, LCTL(LSFT(KC_M)), LCTL(LSFT(KC_D)), KC_F24
@@ -90,17 +90,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //LCTL(LSFT(KC_M)) is Discord mute button, LCTL(LSFT(KC_D)) is Discord unmute button.
         //-----add
     ),
-    [_MEDIA] = LAYOUT(
+    [_VOL] = LAYOUT(
         MO(_TOOGLE),
         SPOTIFY, DISCORD, CHROME,
         VLC, LCTL(LSFT(KC_M)), KC_MUTE, DEFAULT      
     ),
-    [_VOLUME] = LAYOUT(
+    [_MEDIA] = LAYOUT(
         MO(_TOOGLE),
         KC_F13, KC_F14, KC_F15,
         KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE
     ),
-    [_DISCORD] = LAYOUT(
+    [_EXFC] = LAYOUT(
         MO(_TOOGLE),
         LALT(KC_1), LALT(KC_2), LALT(KC_3),
         LALT(KC_4), LALT(KC_5), LALT(KC_6), LALT(KC_7)
@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //LALT(KC_1 "or any" ) is holding down the ALT key and press the 1 "or any" key.
         //-----add
     ),
-    [_LIGHTS] = LAYOUT(
+    [_MFC] = LAYOUT(
         MO(_TOOGLE),
         KC_INS, KC_HOME, KC_PGUP,
         KC_DELETE, KC_END, KC_PGDN, KC_NO
@@ -125,8 +125,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_TOOGLE] = LAYOUT(
         MO(_TOOGLE),
-        TO(_NAV),    TO(_MEDIA),    TO(_VOLUME),
-        TO(_DISCORD),    TO(_LIGHTS),    TO(_EDIT),    TO(_RESET)
+        TO(_DEF),    TO(_VOL),    TO(_MEDIA),
+        TO(_EXFC),    TO(_MFC),    TO(_EDIT),    TO(_RESET)
     )
 };
 
