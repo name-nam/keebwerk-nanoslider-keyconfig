@@ -1,4 +1,5 @@
 # keebwerk-nanoslider-keyconfig
+[日本語版 README はこちら](https://github.com/name-nam/keebwerk-nanoslider-keyconfig/blob/master/README-ja.md)  
 This program is a modified version of the official keebwerk one.  
 Modified from->https://github.com/jesusvallejo/nanokeymaps/blob/master/keymap.c  
 This program is designed for those who use their own way of doing things instead of the official procedure.  
