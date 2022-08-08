@@ -136,6 +136,7 @@ Twitter:@name__nam
 URL:https://twitter.com/name__nam  
 
 # ライセンス
+Copyright (c) 2022 name-nam  
 このプログラムはGNU LGPLv3の下で配布しています。  
 詳しくはライセンスをご覧ください。  
 https://github.com/name-nam/keebwerk-nanoslider-keyconfig/blob/master/LICENSE
