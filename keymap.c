@@ -9,7 +9,7 @@ see https://github.com/name-nam/keebwerk-nanoslider-keyconfig/blob/master/LICENS
 
 /*
 This program is a modified version of https://github.com/jesusvallejo/nanokeymaps/blob/master/keymap.c
-The section I have added is shown as '-----add'.
+The section I have added is shown as '-----ADD'.
 */
 
 #include QMK_KEYBOARD_H
@@ -23,13 +23,13 @@ and windows version https://github.com/jesusvallejo/Midi2Vol
 
 Enables the user to change the volume on the host computer if running midi2vol software.
 
------add
+-----ADD
 If changing the volume with the MIDI slider does not work , I recommend to use MIDI Mixer :https://www.midi-mixer.com
 (I used it because midi2vol did not work well)
 
 If you have any questions , you should read the reedme.
 Or please contact me on Twitter : @name__nam
------add
+-----ADD
 
 Example to extend usability is provided check VLC in: enum custom_keycodes {} and bool process_record_user(uint16_t keycode, keyrecord_t *record) {}
 Remember to give allways the new volume control a hex value not used by other volume control, 
@@ -40,7 +40,15 @@ A compiled version of this keymap is provided in here: https://github.com/jesusv
 
 */
 
+
+/*
+----ADD
+It is the first hexadecimal number that is assigned when the computer is started. 
+In other words, the layer to which this hexadecimal number is assigned is the initial state.
+----ADD
+*/
 uint8_t midi2vol = 0x3E;
+
 
 // Defines names for use in layer keycodes and the keymap
 
@@ -64,9 +72,9 @@ uint8_t midi2vol = 0x3E;
 
 // Defines the keycodes used by our macros in process_record_user
 
-//-----add
+//-----ADD
 // When using MIDI Mixer, this name is no longer relevant.
-//-----add
+//-----ADD
 
 enum custom_keycodes { // In order to add more volume controls, add here a custom keycode, ex: VLC
     DEFAULT= SAFE_RANGE,SPOTIFY,DISCORD,CHROME,VLC
@@ -79,9 +87,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MO(_TOOGLE),
         KC_F18, KC_F19, KC_F20,
         KC_F21, LCTL(LSFT(KC_M)), LCTL(LSFT(KC_D)), KC_F24
-        //-----add
+        //-----ADD
         //LCTL(LSFT(KC_M)) is Discord mute button, LCTL(LSFT(KC_D)) is Discord unmute button.
-        //-----add
+        //-----ADD
     ),
     [_VOL] = LAYOUT(
         MO(_TOOGLE),
@@ -97,9 +105,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MO(_TOOGLE),
         LALT(KC_1), LALT(KC_2), LALT(KC_3),
         LALT(KC_4), LALT(KC_5), LALT(KC_6), LALT(KC_7)
-        //-----add
+        //-----ADD
         //LALT(KC_1 "or any" ) is holding down the ALT key and press the 1 "or any" key.
-        //-----add
+        //-----ADD
     ),
     [_MFC] = LAYOUT(
         MO(_TOOGLE),
@@ -165,9 +173,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) { // In order to
 
 uint8_t divisor = 0;
 
-//-----add
+//-----ADD
 //define tmp to store the previous midi2vol value.
-//-----add
+//-----ADD
 int tmp1,tmp2,tmp3;
 
 void slider(void) {
@@ -175,7 +183,7 @@ void slider(void) {
         return;
     }
 
-    //-----add
+    //-----ADD
     /*
     If the MIDI slider is not moving, no value is sent.
     In other words, it sends only while it is moving.
@@ -197,7 +205,7 @@ void slider(void) {
         tmp3=(analogReadPin(SLIDER_PIN) >> 3);
     }
 
-    //-----add
+    //-----ADD
 }
 
 void matrix_scan_user(void) {
