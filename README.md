@@ -9,8 +9,8 @@ In other words, please note that the internal process has been changed to suit y
 Here is an explanation of the program.  
 For the overall procedure, please see my blog or YouTube.  
 The blog describes it in more detail, but I hope you will watch the video as well.  
-Blog->  
-YouTube->  
+Blog -> https://name-nam.hateblo.jp/entry/2022/08/10/230333  
+YouTube -> https://youtu.be/obA68gMKpQ4  
 
 # Explanation of the program
 There is an official explanation of the program, but I will write it as a Japanese version.  
