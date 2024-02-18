@@ -1,7 +1,7 @@
 /* 
 keymap.c
 
-Copyright (c) 2022 name-nam
+Copyright (c) 2024 name-nam
 
 This software is released under the GNU LGPLv3.
 see https://github.com/name-nam/keebwerk-nanoslider-keyconfig/blob/master/LICENSE
@@ -47,7 +47,7 @@ It is the first hexadecimal number that is assigned when the computer is started
 In other words, the layer to which this hexadecimal number is assigned is the initial state.
 ----ADD
 */
-uint8_t midi2vol = 0x3E;
+uint8_t midi2vol = 0x3F;
 
 
 // Defines names for use in layer keycodes and the keymap
@@ -85,8 +85,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
     [_DEF] = LAYOUT(
         MO(_TOOGLE),
-        KC_F18, KC_F19, KC_F20,
-        KC_F21, LCTL(LSFT(KC_M)), LCTL(LSFT(KC_D)), KC_F24
+        // KC_F18, KC_F19, KC_F20,
+        KC_MPRV, KC_MPLY, KC_MNXT,
+        LCTL(LWIN(KC_LEFT)), LCTL(LWIN(KC_RIGHT)),LCTL(LSFT(KC_M)), LCTL(LSFT(KC_D))
         //-----ADD
         //LCTL(LSFT(KC_M)) is Discord mute button, LCTL(LSFT(KC_D)) is Discord unmute button.
         //-----ADD
@@ -94,7 +95,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_VOL] = LAYOUT(
         MO(_TOOGLE),
         SPOTIFY, DISCORD, CHROME,
-        VLC, LCTL(LSFT(KC_M)), KC_MUTE, DEFAULT      
+        // VLC, LCTL(LSFT(KC_M)), KC_MUTE, DEFAULT     
+        VLC, LCTL(LSFT(KC_M)), LCTL(LSFT(KC_D)), DEFAULT     
     ),
     [_MEDIA] = LAYOUT(
         MO(_TOOGLE),
@@ -176,7 +178,7 @@ uint8_t divisor = 0;
 //-----ADD
 //define tmp to store the previous midi2vol value.
 //-----ADD
-int tmp1,tmp2,tmp3;
+int tmp;
 
 void slider(void) {
     if (divisor++) {
@@ -192,17 +194,11 @@ void slider(void) {
     Also,if slider between previous value and next value , no value is sent ,because the overlay would continue to appear forever.
     ex) Back and forth between 4E and 4F.
     */
-    if(tmp3==(analogReadPin(SLIDER_PIN) >> 3)){
-        return;
-    }else if(tmp1==(analogReadPin(SLIDER_PIN) >> 3)-1){
-        return;
-    }else if(tmp2==(analogReadPin(SLIDER_PIN) >> 3)+1){
+    if(abs(tmp-(analogReadPin(SLIDER_PIN) >> 3))<2){
         return;
     }else{
         midi_send_cc(&midi_device, 2, midi2vol, 0x7F - (analogReadPin(SLIDER_PIN) >> 3));
-        tmp1=(analogReadPin(SLIDER_PIN) >> 3)-1;
-        tmp2=(analogReadPin(SLIDER_PIN) >> 3)+1;
-        tmp3=(analogReadPin(SLIDER_PIN) >> 3);
+        tmp=(analogReadPin(SLIDER_PIN) >> 3);
     }
 
     //-----ADD
