@@ -1,7 +1,7 @@
 /* 
 keymap.c
 
-Copyright (c) 2024 name-nam
+Copyright (c) 2022 name-nam
 
 This software is released under the GNU LGPLv3.
 see https://github.com/name-nam/keebwerk-nanoslider-keyconfig/blob/master/LICENSE
@@ -194,11 +194,11 @@ void slider(void) {
     Also,if slider between previous value and next value , no value is sent ,because the overlay would continue to appear forever.
     ex) Back and forth between 4E and 4F.
     */
-    if(abs(tmp-(analogReadPin(SLIDER_PIN) >> 3))<2){
+    if(abs(tmp-analogReadPin(SLIDER_PIN))<20){
         return;
     }else{
         midi_send_cc(&midi_device, 2, midi2vol, 0x7F - (analogReadPin(SLIDER_PIN) >> 3));
-        tmp=(analogReadPin(SLIDER_PIN) >> 3);
+        tmp=analogReadPin(SLIDER_PIN);
     }
 
     //-----ADD
